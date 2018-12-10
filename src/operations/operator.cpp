@@ -26,6 +26,8 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "elementary/modulus.h"
 #include "elementary/exponentiation.h"
 #include "elementary/square-root.h"
+#include "elementary/factorial.h"
+#include "elementary/factor.h"
 
 using namespace std;
 using namespace GiNaC;
@@ -65,6 +67,10 @@ Operation Operator::getOperation(string operation) {
 		return Operation::EXPONENTIATION;
 	else if (operation == "sqrt")
 		return Operation::SQUARE_ROOT;
+	else if (operation == "fct")
+		return Operation::FACTORIAL;
+	else if (operation == "fac")
+		return Operation::FACTOR;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -167,6 +173,32 @@ void Operator::evaluate() {
 
 			cout << "Square root calculation complete in " << time << " us" << endl;
 			cout << squareRoot.getResult() << endl;
+			break;
+		}
+		case Operation::FACTORIAL: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			Factorial factorial = Factorial::getInstance(args);
+			double time = factorial.evaluate();
+
+			cout << "Factorial calculation complete in " << time << " us" << endl;
+			cout << factorial.getResult() << endl;
+			break;
+		}
+		case Operation::FACTOR: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			Factor factor = Factor::getInstance(args);
+			double time = factor.evaluate();
+
+			cout << "Factorization complete in " << time << " us" << endl;
+			cout << factor.getResult() << endl;
 			break;
 		}
 		case INVALID_OPERATION: {
