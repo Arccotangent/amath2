@@ -15,41 +15,35 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "division.h"
+#include "exponentiation.h"
 #include <chrono>
 
 using namespace std;
 using namespace GiNaC;
 
-Division::Division(vector<ex> args) {
+Exponentiation::Exponentiation(vector<ex> args) {
 	this->args = move(args);
 }
 
-Division &Division::getInstance(vector<ex> args) {
-	static Division *instance = nullptr;
+Exponentiation& Exponentiation::getInstance(vector<ex> args) {
+	static Exponentiation *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new Division(move(args));
+		instance = new Exponentiation(move(args));
 	}
 
 	return *instance;
 }
 
-double Division::evaluate() {
+double Exponentiation::evaluate() {
 	auto start = chrono::high_resolution_clock::now();
-	this->result = args[0];
-
-	for (int i = 1; i < args.size(); i++) {
-		this->result /= args[i];
-	}
-
-	this->result = evalf(result);
+	this->result = evalf(pow(args[0], args[1]));
 
 	auto end = chrono::high_resolution_clock::now();
 	auto elapsed = end - start;
 	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
 }
 
-ex Division::getResult() {
+ex Exponentiation::getResult() {
 	return this->result;
 }

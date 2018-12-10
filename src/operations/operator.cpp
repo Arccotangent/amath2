@@ -23,6 +23,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "elementary/subtraction.h"
 #include "elementary/multiplication.h"
 #include "elementary/division.h"
+#include "elementary/modulus.h"
+#include "elementary/exponentiation.h"
+#include "elementary/square-root.h"
+
 using namespace std;
 using namespace GiNaC;
 
@@ -55,6 +59,12 @@ Operation Operator::getOperation(string operation) {
 		return Operation::MULTIPLICATION;
 	else if (operation == "div")
 		return Operation::DIVISION;
+	else if (operation == "mod")
+		return Operation::MODULUS;
+	else if (operation == "pow")
+		return Operation::EXPONENTIATION;
+	else if (operation == "sqrt")
+		return Operation::SQUARE_ROOT;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -70,7 +80,7 @@ void Operator::evaluate() {
 	switch (operation) {
 		case Operation::ADDITION: {
 			if (operationArgCount < 2) {
-				cout << "ERROR: Invalid argument count! You supplied " << (argc - 2) << " arguments when we needed at least 2." << endl;
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
 			}
 
@@ -83,7 +93,7 @@ void Operator::evaluate() {
 		}
 		case Operation::SUBTRACTION: {
 			if (operationArgCount < 2) {
-				cout << "ERROR: Invalid argument count! You supplied " << (argc - 2) << " arguments when we needed at least 2." << endl;
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
 			}
 
@@ -96,7 +106,7 @@ void Operator::evaluate() {
 		}
 		case Operation::MULTIPLICATION: {
 			if (operationArgCount < 2) {
-				cout << "ERROR: Invalid argument count! You supplied " << (argc - 2) << " arguments when we needed at least 2." << endl;
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
 			}
 
@@ -109,7 +119,7 @@ void Operator::evaluate() {
 		}
 		case Operation::DIVISION: {
 			if (operationArgCount < 2) {
-				cout << "ERROR: Invalid argument count! You supplied " << (argc - 2) << " arguments when we needed at least 2." << endl;
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
 			}
 
@@ -118,6 +128,45 @@ void Operator::evaluate() {
 
 			cout << "Division complete in " << time << " us" << endl;
 			cout << division.getResult() << endl;
+			break;
+		}
+		case Operation::MODULUS: {
+			if (operationArgCount != 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
+				break;
+			}
+
+			Modulus modulus = Modulus::getInstance(args);
+			double time = modulus.evaluate();
+
+			cout << "Modulus calculation complete in " << time << " us" << endl;
+			cout << modulus.getResult() << endl;
+			break;
+		}
+		case Operation::EXPONENTIATION: {
+			if (operationArgCount != 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
+				break;
+			}
+
+			Exponentiation exponentiation = Exponentiation::getInstance(args);
+			double time = exponentiation.evaluate();
+
+			cout << "Exponentiation complete in " << time << " us" << endl;
+			cout << exponentiation.getResult() << endl;
+			break;
+		}
+		case Operation::SQUARE_ROOT: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			SquareRoot squareRoot = SquareRoot::getInstance(args);
+			double time = squareRoot.evaluate();
+
+			cout << "Square root calculation complete in " << time << " us" << endl;
+			cout << squareRoot.getResult() << endl;
 			break;
 		}
 		case INVALID_OPERATION: {

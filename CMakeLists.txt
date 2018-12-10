@@ -11,7 +11,13 @@ set(ELEMENTARY_SOURCES
 		src/operations/elementary/multiplication.cpp
 		src/operations/elementary/multiplication.h
 		src/operations/elementary/division.cpp
-		src/operations/elementary/division.h)
+		src/operations/elementary/division.h
+		src/operations/elementary/modulus.cpp
+		src/operations/elementary/modulus.h
+		src/operations/elementary/exponentiation.cpp
+		src/operations/elementary/exponentiation.h
+		src/operations/elementary/square-root.cpp
+		src/operations/elementary/square-root.h)
 
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)

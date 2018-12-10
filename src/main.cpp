@@ -24,10 +24,14 @@ using namespace std;
 void printUsage() {
 	cout << "amath2 - Yet another new improved command line calculator by Arccotangent" << endl
 	<< endl
-	<< "add <numbers> - Add numbers" << endl
-	<< "sub <numbers> - Subtract numbers" << endl
-	<< "mul <numbers> - Multiply numbers" << endl
-	<< "div <numbers> - Divide numbers" << endl;
+	<< "-----Elementary Math-----" << endl
+	<< "add <numbers> - Add numbers or polynomials" << endl
+	<< "sub <numbers> - Subtract numbers or polynomials" << endl
+	<< "mul <numbers> - Multiply numbers or polynomials" << endl
+	<< "div <numbers> - Divide numbers or polynomials" << endl
+	<< "mod <2 numbers> - Get the modulus of 2 numbers" << endl
+	<< "pow <base> <exponent> - Calculate an exponent" << endl
+	<< "sqrt <number> - Calculate a square root (approximated)" << endl;
 }
 
 int main(int argc, char* argv[]) {
