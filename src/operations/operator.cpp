@@ -28,6 +28,8 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "elementary/square-root.h"
 #include "elementary/factorial.h"
 #include "elementary/factor.h"
+#include "elementary/gcd.h"
+#include "elementary/lcm.h"
 
 using namespace std;
 using namespace GiNaC;
@@ -71,6 +73,10 @@ Operation Operator::getOperation(string operation) {
 		return Operation::FACTORIAL;
 	else if (operation == "fac")
 		return Operation::FACTOR;
+	else if (operation == "gcd")
+		return Operation::GREATEST_COMMON_DENOMINATOR;
+	else if (operation == "lcm")
+		return Operation::LEAST_COMMON_MULTIPLE;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -199,6 +205,32 @@ void Operator::evaluate() {
 
 			cout << "Factorization complete in " << time << " us" << endl;
 			cout << factor.getResult() << endl;
+			break;
+		}
+		case Operation::GREATEST_COMMON_DENOMINATOR: {
+			if (operationArgCount < 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
+				break;
+			}
+
+			GCD gcd = GCD::getInstance(args);
+			double time = gcd.evaluate();
+
+			cout << "GCD calculation complete in " << time << " us" << endl;
+			cout << gcd.getResult() << endl;
+			break;
+		}
+		case Operation::LEAST_COMMON_MULTIPLE: {
+			if (operationArgCount < 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
+				break;
+			}
+
+			LCM lcm = LCM::getInstance(args);
+			double time = lcm.evaluate();
+
+			cout << "LCM calculation complete in " << time << " us" << endl;
+			cout << lcm.getResult() << endl;
 			break;
 		}
 		case INVALID_OPERATION: {

@@ -47,7 +47,9 @@ void printUsage() {
 	<< "pow <base> <exponent> - Calculate an exponent" << endl
 	<< "sqrt <number/polynomial> - Calculate a square root (approximated)" << endl
 	<< "fct <number> - Calculate the factorial value of an integer" << endl
-	<< "fac <polynomial> - Factor a polynomial" << endl;
+	<< "fac <polynomial> - Factor a polynomial" << endl
+	<< "gcd <numbers> - Find the GCD (greatest common denominator) of 2 or more numbers" << endl
+	<< "lcm <numbers> - Find the LCM (least common multiple) of 2 or more numbers" << endl;
 }
 
 int main(int argc, char* argv[]) {

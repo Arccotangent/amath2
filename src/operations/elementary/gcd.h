@@ -15,42 +15,25 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AMATH2_OPERATOR_H
-#define AMATH2_OPERATOR_H
+#ifndef AMATH2_GCD_H
+#define AMATH2_GCD_H
 
-#include <iostream>
 #include <vector>
+#include <ginac/ginac.h>
 
-enum Operation {
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLICATION,
-	DIVISION,
-	MODULUS,
-	EXPONENTIATION,
-	SQUARE_ROOT,
-	FACTORIAL,
-	FACTOR,
-	GREATEST_COMMON_DENOMINATOR,
-	LEAST_COMMON_MULTIPLE,
-
-	INVALID_OPERATION
-};
-
-class Operator {
+class GCD {
 private:
-	int argc;
-	std::vector<std::string> argv;
+	std::vector<GiNaC::ex> args;
+	GiNaC::ex result;
 
-	Operator(int argc, char* argv[]);
-	Operation getOperation(std::string operation);
+	explicit GCD(std::vector<GiNaC::ex>);
 
 public:
-	~Operator();
-	static Operator &getOperator(int argc, char* argv[]);
+	static GCD &getInstance(std::vector<GiNaC::ex>);
 
-	void evaluate();
+	double evaluate();
+	GiNaC::ex getResult();
 };
 
 
-#endif //AMATH2_OPERATOR_H
+#endif //AMATH2_GCD_H

@@ -21,7 +21,11 @@ set(ELEMENTARY_SOURCES
 		src/operations/elementary/factorial.cpp
 		src/operations/elementary/factorial.h
 		src/operations/elementary/factor.cpp
-		src/operations/elementary/factor.h)
+		src/operations/elementary/factor.h
+		src/operations/elementary/gcd.cpp
+		src/operations/elementary/gcd.h
+		src/operations/elementary/lcm.cpp
+		src/operations/elementary/lcm.h)
 
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)
