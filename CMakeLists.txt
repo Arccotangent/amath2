@@ -27,8 +27,17 @@ set(ELEMENTARY_SOURCES
 		src/operations/elementary/lcm.cpp
 		src/operations/elementary/lcm.h)
 
+set(ALGEBRA_SOURCES
+		src/operations/algebra/quadratic.cpp
+		src/operations/algebra/quadratic.h
+		src/operations/algebra/cubic.cpp
+		src/operations/algebra/cubic.h)
+
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)
+
+add_library(amath2_algebra STATIC ${ALGEBRA_SOURCES})
+target_link_libraries(amath2_algebra cln ginac)
 
 set(AMATH2_SOURCES
 		src/main.cpp
@@ -40,4 +49,4 @@ set(AMATH2_SOURCES
 
 add_executable(amath2 ${AMATH2_SOURCES})
 
-target_link_libraries(amath2 cln ginac amath2_elementary)
+target_link_libraries(amath2 cln ginac amath2_elementary amath2_algebra)

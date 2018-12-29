@@ -15,45 +15,25 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AMATH2_OPERATOR_H
-#define AMATH2_OPERATOR_H
+#ifndef AMATH2_QUADRATIC_H
+#define AMATH2_QUADRATIC_H
 
-#include <iostream>
 #include <vector>
+#include <ginac/ginac.h>
 
-enum Operation {
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLICATION,
-	DIVISION,
-	MODULUS,
-	EXPONENTIATION,
-	SQUARE_ROOT,
-	FACTORIAL,
-	FACTOR,
-	GREATEST_COMMON_DENOMINATOR,
-	LEAST_COMMON_MULTIPLE,
-
-	SOLVE_QUADRATIC,
-	SOLVE_CUBIC,
-
-	INVALID_OPERATION
-};
-
-class Operator {
+class Quadratic {
 private:
-	int argc;
-	std::vector<std::string> argv;
+	std::vector<GiNaC::ex> args;
+	GiNaC::ex x1, x2;
 
-	Operator(int argc, char* argv[]);
-	Operation getOperation(std::string operation);
-
+	explicit Quadratic(std::vector<GiNaC::ex>);
 public:
-	~Operator();
-	static Operator &getOperator(int argc, char* argv[]);
+	static Quadratic &getInstance(std::vector<GiNaC::ex>);
 
-	void evaluate();
+	double evaluate();
+	GiNaC::ex getX1();
+	GiNaC::ex getX2();
 };
 
 
-#endif //AMATH2_OPERATOR_H
+#endif //AMATH2_QUADRATIC_H

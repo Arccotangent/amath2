@@ -31,6 +31,9 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "elementary/gcd.h"
 #include "elementary/lcm.h"
 
+#include "algebra/quadratic.h"
+#include "algebra/cubic.h"
+
 using namespace std;
 using namespace GiNaC;
 
@@ -77,6 +80,10 @@ Operation Operator::getOperation(string operation) {
 		return Operation::GREATEST_COMMON_DENOMINATOR;
 	else if (operation == "lcm")
 		return Operation::LEAST_COMMON_MULTIPLE;
+	else if (operation == "qdr")
+		return Operation::SOLVE_QUADRATIC;
+	else if (operation == "cbc")
+		return Operation::SOLVE_CUBIC;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -231,6 +238,35 @@ void Operator::evaluate() {
 
 			cout << "LCM calculation complete in " << time << " us" << endl;
 			cout << lcm.getResult() << endl;
+			break;
+		}
+		case Operation::SOLVE_QUADRATIC: {
+			if (operationArgCount != 3) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
+				break;
+			}
+
+			Quadratic quadratic = Quadratic::getInstance(args);
+			double time = quadratic.evaluate();
+
+			cout << "Quadratic equation solved in " << time << " us" << endl;
+			cout << quadratic.getX1() << endl;
+			cout << quadratic.getX2() << endl;
+			break;
+		}
+		case Operation::SOLVE_CUBIC: {
+			if (operationArgCount != 4) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 4." << endl;
+				break;
+			}
+
+			Cubic cubic = Cubic::getInstance(args);
+			double time = cubic.evaluate();
+
+			cout << "Cubic equation solved in " << time << " us" << endl;
+			cout << cubic.getX1() << endl;
+			cout << cubic.getX2() << endl;
+			cout << cubic.getX3() << endl;
 			break;
 		}
 		case INVALID_OPERATION: {

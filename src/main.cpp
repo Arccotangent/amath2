@@ -49,7 +49,11 @@ void printUsage() {
 	<< "fct <number> - Calculate the factorial value of an integer" << endl
 	<< "fac <polynomial> - Factor a polynomial" << endl
 	<< "gcd <numbers> - Find the GCD (greatest common denominator) of 2 or more numbers" << endl
-	<< "lcm <numbers> - Find the LCM (least common multiple) of 2 or more numbers" << endl;
+	<< "lcm <numbers> - Find the LCM (least common multiple) of 2 or more numbers" << endl
+	<< endl
+	<< "-----Algebra-----" << endl
+	<< "qdr <a> <b> <c> - Solve a univariate quadratic (degree 2) polynomial set equal to 0 for x" << endl
+	<< "cbc <a> <b> <c> <d> - Solve a univariate cubic (degree 3) polynomial set equal to 0 for x" << endl;
 }
 
 int main(int argc, char* argv[]) {

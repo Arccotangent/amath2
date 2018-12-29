@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
+      <config projectName="amath2" targetName="amath2_algebra" />
       <config projectName="amath2" targetName="amath2_elementary" />
       <config projectName="amath2" targetName="amath2" />
     </generated>
@@ -13,15 +14,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19ea416a-876c-4974-a32c-1a78de570df8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/operations/elementary/gcd.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/operations/elementary/gcd.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/operations/elementary/lcm.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/operations/elementary/lcm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/operations/algebra/cubic.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/operations/algebra/cubic.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/operations/algebra/quadratic.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/operations/algebra/quadratic.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/operator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/operator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/operator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/operator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/number-helper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/number-helper.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,10 +36,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="51" column="91" selection-start-line="51" selection-start-column="91" selection-end-line="51" selection-end-column="91" />
+            <state relative-caret-position="320">
+              <caret line="55" column="107" lean-forward="true" selection-start-line="55" selection-start-column="107" selection-end-line="55" selection-end-column="107" />
               <folding>
                 <element signature="e#696#715#0" expanded="true" />
               </folding>
@@ -46,67 +57,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/lcm.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
-              <folding>
-                <element signature="e#614#630#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/lcm.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="e#657#674#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/gcd.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-              <folding>
-                <element signature="e#614#630#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/gcd.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-              <folding>
-                <element signature="e#657#674#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/operations/operator.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="232" column="44" selection-start-line="232" selection-start-column="44" selection-end-line="232" selection-end-column="44" />
+            <state relative-caret-position="362">
+              <caret line="268" column="42" lean-forward="true" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
               <folding>
                 <element signature="e#614#635#0" expanded="true" />
               </folding>
@@ -117,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/operations/operator.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+            <state relative-caret-position="392">
+              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding>
                 <element signature="e#667#686#0" expanded="true" />
               </folding>
@@ -126,26 +80,56 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.cpp">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/operations/algebra/cubic.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="49" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="49" />
+            <state relative-caret-position="236">
+              <caret line="95" column="107" lean-forward="true" selection-start-line="95" selection-start-column="107" selection-end-line="95" selection-end-column="107" />
               <folding>
-                <element signature="e#614#636#0" expanded="true" />
+                <element signature="e#614#632#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.h">
+        <entry file="file://$PROJECT_DIR$/src/operations/algebra/cubic.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="490">
+              <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+              <folding>
+                <element signature="e#661#678#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/operations/algebra/quadratic.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="18" selection-start-line="18" selection-end-line="56" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/operations/algebra/quadratic.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#669#686#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/number-helper.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -158,6 +142,7 @@
       <find>Addition</find>
       <find>SquareRoot</find>
       <find>Factorial</find>
+      <find>Quadratic</find>
     </findStrings>
     <replaceStrings>
       <replace>Subtraction</replace>
@@ -168,6 +153,9 @@
       <replace>Factor</replace>
       <replace>GCD</replace>
       <replace>LCM</replace>
+      <replace>RootFinder</replace>
+      <replace>Quadratic</replace>
+      <replace>Cubic</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -190,8 +178,6 @@
         <option value="$PROJECT_DIR$/src/operations/operation.cpp" />
         <option value="$PROJECT_DIR$/src/operations/elementary/addition.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/addition.cpp" />
-        <option value="$PROJECT_DIR$/src/utils/number-helper.h" />
-        <option value="$PROJECT_DIR$/src/utils/number-helper.cpp" />
         <option value="$PROJECT_DIR$/src/operations/elementary/subtraction.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/multiplication.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/division.h" />
@@ -210,14 +196,22 @@
         <option value="$PROJECT_DIR$/src/operations/elementary/factorial.cpp" />
         <option value="$PROJECT_DIR$/src/operations/elementary/factor.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/factor.cpp" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/operations/elementary/gcd.cpp" />
         <option value="$PROJECT_DIR$/src/operations/elementary/gcd.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/lcm.h" />
         <option value="$PROJECT_DIR$/src/operations/elementary/lcm.cpp" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/root-finder.h" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/root-finder.cpp" />
+        <option value="$PROJECT_DIR$/src/utils/number-helper.cpp" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/quadratic.h" />
+        <option value="$PROJECT_DIR$/src/utils/number-helper.h" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/quadratic.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/cubic.h" />
         <option value="$PROJECT_DIR$/src/operations/operator.h" />
         <option value="$PROJECT_DIR$/src/operations/operator.cpp" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/src/operations/algebra/cubic.cpp" />
       </list>
     </option>
   </component>
@@ -249,6 +243,13 @@
               <item name="amath2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="operations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="amath2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="amath2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="operations" type="462c0819:PsiDirectoryNode" />
+              <item name="algebra" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="amath2" type="b2602c69:ProjectViewProjectNode" />
@@ -300,6 +301,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="amath2_algebra" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="amath2" TARGET_NAME="amath2_algebra" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="amath2_elementary" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="amath2" TARGET_NAME="amath2_elementary" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -307,6 +313,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.amath2" />
+      <item itemvalue="Application.amath2_algebra" />
       <item itemvalue="Application.amath2_elementary" />
     </list>
   </component>
@@ -333,7 +340,16 @@
       <workItem from="1544505528698" duration="1318000" />
       <workItem from="1544545460258" duration="1303000" />
       <workItem from="1544564205852" duration="6179000" />
-      <workItem from="1544624198683" duration="914000" />
+      <workItem from="1544624198683" duration="2437000" />
+      <workItem from="1544653894081" duration="3681000" />
+      <workItem from="1544733556270" duration="47000" />
+      <workItem from="1544734760864" duration="9627000" />
+      <workItem from="1544840366185" duration="985000" />
+      <workItem from="1544923505551" duration="139000" />
+      <workItem from="1544925605091" duration="849000" />
+      <workItem from="1545496345866" duration="706000" />
+      <workItem from="1546029109346" duration="831000" />
+      <workItem from="1546092150972" duration="3315000" />
     </task>
     <task id="LOCAL-00001" summary="Initial four function calculator">
       <created>1544400088704</created>
@@ -363,17 +379,24 @@
       <option name="project" value="LOCAL" />
       <updated>1544475933496</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add GCD and LCM calculators">
+      <created>1544625200004</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1544625200005</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30649000" />
+    <option name="totallyTimeSpent" value="52352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="26" width="1924" height="1035" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28381255" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31203407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -384,10 +407,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3296582" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3296582" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="CMake" order="11" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.3296582" />
       <window_info anchor="bottom" id="Serial Monitor" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3296582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -427,7 +450,8 @@
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Add exponentiation, modulus, and square root calculators&#10;Add CLion files&#10;Optimizations" />
     <MESSAGE value="Add factorial and polynomial factorization calculators&#10;Print copyright notice with usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add factorial and polynomial factorization calculators&#10;Print copyright notice with usage" />
+    <MESSAGE value="Add GCD and LCM calculators" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GCD and LCM calculators" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -446,26 +470,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/operation.h" />
     <entry file="file://$PROJECT_DIR$/src/operations/operation.cpp" />
-    <entry file="file://$PROJECT_DIR$/src/utils/number-helper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-          <folding>
-            <element signature="e#677#694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/number-helper.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding>
-            <element signature="e#614#640#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/elementary/multiplication.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -516,13 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/operations/elementary/addition.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/elementary/addition.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -560,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -590,16 +580,6 @@
           <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#614#634#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/operations/elementary/exponentiation.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#614#641#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -634,16 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#669#686#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/elementary/factor.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -654,22 +624,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/src/operations/elementary/gcd.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="51" column="91" selection-start-line="51" selection-start-column="91" selection-end-line="51" selection-end-column="91" />
+        <state relative-caret-position="392">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding>
-            <element signature="e#696#715#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="49" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="49" />
-          <folding>
-            <element signature="e#614#636#0" expanded="true" />
+            <element signature="e#657#674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -686,45 +646,125 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/elementary/lcm.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+        <state relative-caret-position="742">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
           <folding>
             <element signature="e#614#630#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/elementary/lcm.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="504">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#657#674#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/operations/elementary/gcd.h">
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/root-finder.h" />
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/root-finder.cpp" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        <state relative-caret-position="14">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
-            <element signature="e#657#674#0" expanded="true" />
+            <element signature="e#669#686#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/elementary/factorial.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#614#636#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/elementary/addition.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/elementary/exponentiation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#614#641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/number-helper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#677#694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/number-helper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/quadratic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#669#686#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/quadratic.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="18" selection-start-line="18" selection-end-line="56" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/cubic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding>
+            <element signature="e#661#678#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/operator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state relative-caret-position="392">
+          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding>
             <element signature="e#667#686#0" expanded="true" />
           </folding>
@@ -733,10 +773,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/operations/operator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="232" column="44" selection-start-line="232" selection-start-column="44" selection-end-line="232" selection-end-column="44" />
+        <state relative-caret-position="362">
+          <caret line="268" column="42" lean-forward="true" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
           <folding>
             <element signature="e#614#635#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="55" column="107" lean-forward="true" selection-start-line="55" selection-start-column="107" selection-end-line="55" selection-end-column="107" />
+          <folding>
+            <element signature="e#696#715#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operations/algebra/cubic.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="95" column="107" lean-forward="true" selection-start-line="95" selection-start-column="107" selection-end-line="95" selection-end-column="107" />
+          <folding>
+            <element signature="e#614#632#0" expanded="true" />
           </folding>
         </state>
       </provider>

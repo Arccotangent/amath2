@@ -41,9 +41,13 @@ vector<ex> NumberHelper::process() {
 	vector<ex> args;
 
 	for (int i = 2; i < argc; i++) {
-		parser reader;
-		ex expression = reader(argv[i]);
-		args.emplace_back(expression);
+		try {
+			parser reader;
+			ex expression = reader(argv[i]);
+			args.emplace_back(expression);
+		} catch (parse_error &error) {
+			cout << "ERROR: Exception caught in parsing: " << error.what() << endl;
+		}
 	}
 
 	return args;
