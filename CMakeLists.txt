@@ -39,7 +39,11 @@ set(ALGEBRA_SOURCES
 		src/operations/algebra/binary-logarithm.cpp
 		src/operations/algebra/binary-logarithm.h
 		src/operations/algebra/custom-base-logarithm.cpp
-		src/operations/algebra/custom-base-logarithm.h)
+		src/operations/algebra/custom-base-logarithm.h
+		src/operations/algebra/compound-interest.cpp
+		src/operations/algebra/compound-interest.h
+		src/operations/algebra/continuous-compound-interest.cpp
+		src/operations/algebra/continuous-compound-interest.h)
 
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)

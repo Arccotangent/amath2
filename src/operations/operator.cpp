@@ -37,6 +37,8 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "algebra/base-10-logarithm.h"
 #include "algebra/binary-logarithm.h"
 #include "algebra/custom-base-logarithm.h"
+#include "algebra/compound-interest.h"
+#include "algebra/continuous-compound-interest.h"
 
 using std::string;
 using std::cout;
@@ -99,6 +101,10 @@ Operation Operator::getOperation(const string &operation) {
 		return Operation::BINARY_LOGARITHM;
 	else if (operation == "logb")
 		return Operation::CUSTOM_BASE_LOGARITHM;
+	else if (operation == "cpi")
+		return Operation::COMPOUND_INTEREST;
+	else if (operation == "ccpi")
+		return Operation::CONTINUOUS_COMPOUND_INTEREST;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -324,8 +330,8 @@ void Operator::evaluate() {
 			break;
 		}
 		case Operation::CUSTOM_BASE_LOGARITHM: {
-			if (operationArgCount != 1) {
-				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+			if (operationArgCount != 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
 				break;
 			}
 
@@ -334,6 +340,32 @@ void Operator::evaluate() {
 
 			cout << "Custom base logarithm calculated in " << time << " us" << endl;
 			cout << customBaseLogarithm.getResult() << endl;
+			break;
+		}
+		case Operation::COMPOUND_INTEREST: {
+			if (operationArgCount != 4) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 4." << endl;
+				break;
+			}
+
+			CompoundInterest compoundInterest = CompoundInterest::getInstance(args);
+			double time = compoundInterest.evaluate();
+
+			cout << "Compound interest calculated in " << time << " us" << endl;
+			cout << compoundInterest.getResult() << endl;
+			break;
+		}
+		case Operation::CONTINUOUS_COMPOUND_INTEREST: {
+			if (operationArgCount != 3) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
+				break;
+			}
+
+			ContinuousCompoundInterest continuousCompoundInterest = ContinuousCompoundInterest::getInstance(args);
+			double time = continuousCompoundInterest.evaluate();
+
+			cout << "Continuous compound interest calculated in " << time << " us" << endl;
+			cout << continuousCompoundInterest.getResult() << endl;
 			break;
 		}
 		case Operation::INVALID_OPERATION: {

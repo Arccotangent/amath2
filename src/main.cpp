@@ -33,20 +33,20 @@ void printUsage() {
 		 << "any later version." << endl
 		 << endl
 		 << "This program is distributed in the hope that it will be useful," << endl
-	<< "but WITHOUT ANY WARRANTY; without even the implied warranty of" << endl
-	<< "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the" << endl
-	<< "GNU General Public License for more details." << endl
-	<< endl
-	<< "You should have received a copy of the GNU General Public License" << endl
-	<< "along with this program. If not, see http://www.gnu.org/licenses." << endl
-	<< endl
-	<< "-----Elementary Math-----" << endl
-	<< "add <numbers/polynomials> - Add numbers or polynomials" << endl
-	<< "sub <numbers/polynomials> - Subtract numbers or polynomials" << endl
-	<< "mul <numbers/polynomials> - Multiply numbers or polynomials" << endl
-	<< "div <numbers/polynomials> - Divide numbers or polynomials" << endl
-	<< "mod <2 numbers> - Get the modulus of 2 numbers" << endl
-	<< "pow <base> <exponent> - Calculate an exponent" << endl
+		 << "but WITHOUT ANY WARRANTY; without even the implied warranty of" << endl
+		 << "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the" << endl
+		 << "GNU General Public License for more details." << endl
+		 << endl
+		 << "You should have received a copy of the GNU General Public License" << endl
+		 << "along with this program. If not, see http://www.gnu.org/licenses." << endl
+		 << endl
+		 << "-----Elementary Math-----" << endl
+		 << "add <numbers/polynomials> - Add numbers or polynomials" << endl
+		 << "sub <numbers/polynomials> - Subtract numbers or polynomials" << endl
+		 << "mul <numbers/polynomials> - Multiply numbers or polynomials" << endl
+		 << "div <numbers/polynomials> - Divide numbers or polynomials" << endl
+		 << "mod <2 numbers> - Get the modulus of 2 numbers" << endl
+		 << "pow <base> <exponent> - Calculate an exponent" << endl
 		 << "sqrt <number/polynomial> - Calculate a square root (approximated)" << endl
 		 << "fct <number> - Calculate the factorial value of an integer" << endl
 		 << "fac <polynomial> - Factor a polynomial" << endl
@@ -59,7 +59,9 @@ void printUsage() {
 		 << "log <number> - Natural logarithm" << endl
 		 << "log2 <number> - Binary logarithm" << endl
 		 << "log10 <number> - Base 10 logarithm" << endl
-		 << "logb <base> <number> - Custom base logarithm << endl";
+		 << "logb <base> <number> - Custom base logarithm" << endl
+		 << "cpi <principal> <% rate> <compounds per year> <years> - Calculate periodically compounded interest" << endl
+		 << "ccpi <principal> <% rate> <years> - Calculate continuously compounded interest" << endl;
 }
 
 int main(int argc, char* argv[]) {

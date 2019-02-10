@@ -15,39 +15,65 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "custom-base-logarithm.h"
+#include "continuous-compound-interest.h"
 #include <chrono>
 
+//using std::cout;
+//using std::endl;
 using std::vector;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-CustomBaseLogarithm::CustomBaseLogarithm(vector<ex> args) {
+ContinuousCompoundInterest::ContinuousCompoundInterest(vector<ex> args) {
 	this->args = move(args);
 }
 
-CustomBaseLogarithm &CustomBaseLogarithm::getInstance(std::vector<GiNaC::ex> args) {
-	static CustomBaseLogarithm *instance = nullptr;
+ex ContinuousCompoundInterest::getE() {
+	ex prev;
+	ex curr = 1;
+
+	ex currentDenominator = 1;
+
+	do {
+		prev = curr;
+		curr += 1 / factorial(currentDenominator);
+
+		currentDenominator++;
+	} while (curr - prev >= pow(10, -30));
+
+	return curr;
+}
+
+ContinuousCompoundInterest &ContinuousCompoundInterest::getInstance(vector<ex> args) {
+	static ContinuousCompoundInterest *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new CustomBaseLogarithm(move(args));
+		instance = new ContinuousCompoundInterest(move(args));
 	}
 
 	return *instance;
 }
 
-double CustomBaseLogarithm::evaluate() {
+double ContinuousCompoundInterest::evaluate() {
 	auto start = high_resolution_clock::now();
 
-	result = (log(args[1]) / log(args[0])).evalf();
+	// args[0] = P
+	// args[1] = r
+	// args[2] = t
+
+	ex e = getE();
+	//cout << "[DEBUG] e = " << e.evalf() << endl;
+
+	result = (args[0] * pow(e, (args[1] / 100) * args[2])).evalf();
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
+
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex CustomBaseLogarithm::getResult() {
+ex ContinuousCompoundInterest::getResult() {
 	return this->result;
 }
