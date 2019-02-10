@@ -31,7 +31,15 @@ set(ALGEBRA_SOURCES
 		src/operations/algebra/quadratic.cpp
 		src/operations/algebra/quadratic.h
 		src/operations/algebra/cubic.cpp
-		src/operations/algebra/cubic.h)
+		src/operations/algebra/cubic.h
+		src/operations/algebra/logarithm.cpp
+		src/operations/algebra/logarithm.h
+		src/operations/algebra/base-10-logarithm.cpp
+		src/operations/algebra/base-10-logarithm.h
+		src/operations/algebra/binary-logarithm.cpp
+		src/operations/algebra/binary-logarithm.h
+		src/operations/algebra/custom-base-logarithm.cpp
+		src/operations/algebra/custom-base-logarithm.h)
 
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)

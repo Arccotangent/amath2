@@ -18,14 +18,17 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "square-root.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 SquareRoot::SquareRoot(vector<ex> args) {
 	this->args = move(args);
 }
 
-SquareRoot &SquareRoot::getInstance(std::vector<GiNaC::ex> args) {
+SquareRoot &SquareRoot::getInstance(vector<ex> args) {
 	static SquareRoot *instance = nullptr;
 
 	if (instance == nullptr) {
@@ -36,12 +39,12 @@ SquareRoot &SquareRoot::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double SquareRoot::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = evalf(sqrt(args[0]));
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex SquareRoot::getResult() {

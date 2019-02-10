@@ -18,7 +18,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "subtraction.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 Subtraction::Subtraction(vector<ex> args) {
@@ -36,16 +39,16 @@ Subtraction &Subtraction::getInstance(vector<ex> args) {
 }
 
 double Subtraction::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = args[0];
 
 	for (int i = 1; i < args.size(); i++) {
 		this->result -= args[i];
 	}
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Subtraction::getResult() {

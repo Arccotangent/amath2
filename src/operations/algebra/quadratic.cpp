@@ -18,7 +18,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "quadratic.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 Quadratic::Quadratic(vector<ex> args) {
@@ -36,16 +39,16 @@ Quadratic &Quadratic::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double Quadratic::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 
 	ex discriminant = pow(args[1], 2) - 4 * args[0] * args[2];
 
 	x1 = (-args[1] + discriminant) / (2 * args[0]);
 	x2 = (-args[1] - discriminant) / (2 * args[0]);
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Quadratic::getX1() {

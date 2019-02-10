@@ -18,14 +18,17 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "factor.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 Factor::Factor(vector<ex> args) {
 	this->args = move(args);
 }
 
-Factor &Factor::getInstance(std::vector<GiNaC::ex> args) {
+Factor &Factor::getInstance(vector<ex> args) {
 	static Factor *instance = nullptr;
 
 	if (instance == nullptr) {
@@ -36,12 +39,12 @@ Factor &Factor::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double Factor::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = factor(args[0], factor_options::all);
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Factor::getResult() {

@@ -36,6 +36,10 @@ enum Operation {
 
 	SOLVE_QUADRATIC,
 	SOLVE_CUBIC,
+	NATURAL_LOGARITHM,
+	BASE_10_LOGARITHM,
+	BINARY_LOGARITHM,
+	CUSTOM_BASE_LOGARITHM,
 
 	INVALID_OPERATION
 };
@@ -46,7 +50,8 @@ private:
 	std::vector<std::string> argv;
 
 	Operator(int argc, char* argv[]);
-	Operation getOperation(std::string operation);
+
+	Operation getOperation(const std::string &operation);
 
 public:
 	~Operator();

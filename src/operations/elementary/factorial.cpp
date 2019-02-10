@@ -18,14 +18,17 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "factorial.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 Factorial::Factorial(vector<ex> args) {
 	this->args = move(args);
 }
 
-Factorial &Factorial::getInstance(std::vector<GiNaC::ex> args) {
+Factorial &Factorial::getInstance(vector<ex> args) {
 	static Factorial *instance = nullptr;
 
 	if (instance == nullptr) {
@@ -36,12 +39,12 @@ Factorial &Factorial::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double Factorial::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = factorial(args[0].integer_content());
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Factorial::getResult() {

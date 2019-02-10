@@ -33,8 +33,15 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "algebra/quadratic.h"
 #include "algebra/cubic.h"
+#include "algebra/logarithm.h"
+#include "algebra/base-10-logarithm.h"
+#include "algebra/binary-logarithm.h"
+#include "algebra/custom-base-logarithm.h"
 
-using namespace std;
+using std::string;
+using std::cout;
+using std::endl;
+using std::vector;
 using namespace GiNaC;
 
 Operator::Operator(int argc, char *argv[]) {
@@ -57,7 +64,7 @@ Operator &Operator::getOperator(int argc, char *argv[]) {
 	return *instance;
 }
 
-Operation Operator::getOperation(string operation) {
+Operation Operator::getOperation(const string &operation) {
 	if (operation == "add")
 		return Operation::ADDITION;
 	else if (operation == "sub")
@@ -84,6 +91,14 @@ Operation Operator::getOperation(string operation) {
 		return Operation::SOLVE_QUADRATIC;
 	else if (operation == "cbc")
 		return Operation::SOLVE_CUBIC;
+	else if (operation == "log")
+		return Operation::NATURAL_LOGARITHM;
+	else if (operation == "log10")
+		return Operation::BASE_10_LOGARITHM;
+	else if (operation == "log2")
+		return Operation::BINARY_LOGARITHM;
+	else if (operation == "logb")
+		return Operation::CUSTOM_BASE_LOGARITHM;
 	else
 		return Operation::INVALID_OPERATION;
 }
@@ -269,7 +284,59 @@ void Operator::evaluate() {
 			cout << cubic.getX3() << endl;
 			break;
 		}
-		case INVALID_OPERATION: {
+		case Operation::NATURAL_LOGARITHM: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			Logarithm logarithm = Logarithm::getInstance(args);
+			double time = logarithm.evaluate();
+
+			cout << "Logarithm calculated in " << time << " us" << endl;
+			cout << logarithm.getResult() << endl;
+			break;
+		}
+		case Operation::BASE_10_LOGARITHM: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			Base10Logarithm base10Logarithm = Base10Logarithm::getInstance(args);
+			double time = base10Logarithm.evaluate();
+
+			cout << "Base 10 logarithm calculated in " << time << " us" << endl;
+			cout << base10Logarithm.getResult() << endl;
+			break;
+		}
+		case Operation::BINARY_LOGARITHM: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			BinaryLogarithm binaryLogarithm = BinaryLogarithm::getInstance(args);
+			double time = binaryLogarithm.evaluate();
+
+			cout << "Binary logarithm calculated in " << time << " us" << endl;
+			cout << binaryLogarithm.getResult() << endl;
+			break;
+		}
+		case Operation::CUSTOM_BASE_LOGARITHM: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			CustomBaseLogarithm customBaseLogarithm = CustomBaseLogarithm::getInstance(args);
+			double time = customBaseLogarithm.evaluate();
+
+			cout << "Custom base logarithm calculated in " << time << " us" << endl;
+			cout << customBaseLogarithm.getResult() << endl;
+			break;
+		}
+		case Operation::INVALID_OPERATION: {
 			cout << "ERROR: You have specified an invalid operation! Please run amath2 with no arguments to print usage documentation if needed." << endl;
 			break;
 		}

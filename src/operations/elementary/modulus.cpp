@@ -18,7 +18,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "modulus.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 Modulus::Modulus(vector<ex> args) {
@@ -36,12 +39,12 @@ Modulus &Modulus::getInstance(vector<ex> args) {
 }
 
 double Modulus::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = mod(args[0].integer_content(), args[1].integer_content());
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Modulus::getResult() {

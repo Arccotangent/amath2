@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "gcd.h"
+#include "custom-base-logarithm.h"
 #include <chrono>
 
 using std::vector;
@@ -24,33 +24,30 @@ using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-GCD::GCD(vector<ex> args) {
+CustomBaseLogarithm::CustomBaseLogarithm(vector<ex> args) {
 	this->args = move(args);
 }
 
-GCD &GCD::getInstance(vector<ex> args) {
-	static GCD *instance = nullptr;
+CustomBaseLogarithm &CustomBaseLogarithm::getInstance(std::vector<GiNaC::ex> args) {
+	static CustomBaseLogarithm *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new GCD(move(args));
+		instance = new CustomBaseLogarithm(move(args));
 	}
 
 	return *instance;
 }
 
-double GCD::evaluate() {
+double CustomBaseLogarithm::evaluate() {
 	auto start = high_resolution_clock::now();
-	this->result = gcd(args[0], args[1]);
 
-	for (int i = 2; i < args.size(); i++) {
-		this->result = gcd(this->result, args[i]);
-	}
+	result = (log(args[0]) / log(args[1])).evalf();
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex GCD::getResult() {
+ex CustomBaseLogarithm::getResult() {
 	return this->result;
 }

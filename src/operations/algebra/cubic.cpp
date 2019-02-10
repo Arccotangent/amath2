@@ -18,7 +18,13 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "cubic.h"
 #include <chrono>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::chrono::high_resolution_clock;
+using std::chrono::microseconds;
+using std::chrono::duration_cast;
 using namespace GiNaC;
 
 Cubic::Cubic(vector<ex> args) {
@@ -36,7 +42,12 @@ Cubic &Cubic::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double Cubic::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
+
+	// args[0] = a
+	// args[1] = b
+	// args[2] = c
+	// args[3] = d
 
 	ex discriminant = (18 * args[0] * args[1] * args[2] * args[3]) - (4 * pow(args[1], 3) * args[3]) + (pow(args[1], 2) * pow(args[2], 2)) - (4 * args[0] * pow(args[2], 3)) - (27 * pow(args[0], 2) * pow(args[2], 2));
 
@@ -48,9 +59,9 @@ double Cubic::evaluate() {
 		x2 = tripleRoot;
 		x3 = tripleRoot;
 
-		auto end = chrono::high_resolution_clock::now();
+		auto end = high_resolution_clock::now();
 		auto elapsed = end - start;
-		return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+		return (double) duration_cast<microseconds>(elapsed).count();
 	} else if (discriminant == 0 && delta0 != 0) {
 		ex doubleRoot = (9 * args[0] * args[3] - args[1] * args[2]) / (2 * delta0);
 		x1 = doubleRoot;
@@ -58,9 +69,9 @@ double Cubic::evaluate() {
 
 		x3 = ((4 * args[0] * args[1] * args[2]) - (9 * pow(args[0], 2) * args[3]) - pow(args[1], 3)) / (args[0] * delta0);
 
-		auto end = chrono::high_resolution_clock::now();
+		auto end = high_resolution_clock::now();
 		auto elapsed = end - start;
-		return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+		return (double) duration_cast<microseconds>(elapsed).count();
 	}
 
 	ex delta1 = (2 * pow(args[1], 3)) - (9 * args[0] * args[1] * args[2]) + (27 * pow(args[0], 2) * args[3]);
@@ -83,9 +94,9 @@ double Cubic::evaluate() {
 		x2 = 0;
 		x3 = 0;
 
-		auto end = chrono::high_resolution_clock::now();
+		auto end = high_resolution_clock::now();
 		auto elapsed = end - start;
-		return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+		return (double) duration_cast<microseconds>(elapsed).count();
 	}
 
 	ex cubeRootOfUnity = -0.5 + (0.5 * sqrt(ex(-3)));
@@ -95,9 +106,9 @@ double Cubic::evaluate() {
 	x2 = neg1Over3A * (args[1] + (pow(cubeRootOfUnity, 1) * C) + (delta0 / (pow(cubeRootOfUnity, 1) * C)));
 	x3 = neg1Over3A * (args[1] + (pow(cubeRootOfUnity, 2) * C) + (delta0 / (pow(cubeRootOfUnity, 2) * C)));
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex Cubic::getX1() {
@@ -111,4 +122,3 @@ ex Cubic::getX2() {
 ex Cubic::getX3() {
 	return this->x3;
 }
-

@@ -18,14 +18,17 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "lcm.h"
 #include <chrono>
 
-using namespace std;
+using std::vector;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
 using namespace GiNaC;
 
 LCM::LCM(vector<ex> args) {
 	this->args = move(args);
 }
 
-LCM &LCM::getInstance(std::vector<GiNaC::ex> args) {
+LCM &LCM::getInstance(vector<ex> args) {
 	static LCM *instance = nullptr;
 
 	if (instance == nullptr) {
@@ -36,16 +39,16 @@ LCM &LCM::getInstance(std::vector<GiNaC::ex> args) {
 }
 
 double LCM::evaluate() {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = high_resolution_clock::now();
 	this->result = lcm(args[0], args[1]);
 
 	for (int i = 2; i < args.size(); i++) {
 		this->result = lcm(this->result, args[i]);
 	}
 
-	auto end = chrono::high_resolution_clock::now();
+	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-	return (double) chrono::duration_cast<chrono::microseconds>(elapsed).count();
+	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
 ex LCM::getResult() {

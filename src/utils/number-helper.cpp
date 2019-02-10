@@ -17,7 +17,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "number-helper.h"
 
-using namespace std;
+using std::vector;
+using std::string;
+using std::cout;
+using std::endl;
 using namespace GiNaC;
 
 NumberHelper::NumberHelper(int argc, vector<string> argv) {

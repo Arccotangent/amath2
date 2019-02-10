@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "gcd.h"
+#include "base-10-logarithm.h"
 #include <chrono>
 
 using std::vector;
@@ -24,33 +24,30 @@ using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-GCD::GCD(vector<ex> args) {
+Base10Logarithm::Base10Logarithm(vector<ex> args) {
 	this->args = move(args);
 }
 
-GCD &GCD::getInstance(vector<ex> args) {
-	static GCD *instance = nullptr;
+Base10Logarithm &Base10Logarithm::getInstance(vector<ex> args) {
+	static Base10Logarithm *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new GCD(move(args));
+		instance = new Base10Logarithm(move(args));
 	}
 
 	return *instance;
 }
 
-double GCD::evaluate() {
+double Base10Logarithm::evaluate() {
 	auto start = high_resolution_clock::now();
-	this->result = gcd(args[0], args[1]);
 
-	for (int i = 2; i < args.size(); i++) {
-		this->result = gcd(this->result, args[i]);
-	}
+	result = (log(args[0]) / log(ex(10))).evalf();
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex GCD::getResult() {
+ex Base10Logarithm::getResult() {
 	return this->result;
 }
