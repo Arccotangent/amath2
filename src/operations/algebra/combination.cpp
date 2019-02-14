@@ -15,50 +15,39 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "continuous-compound-interest.h"
-#include "../../utils/number-helper.h"
+#include "combination.h"
 #include <chrono>
 
-//using std::cout;
-//using std::endl;
 using std::vector;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-ContinuousCompoundInterest::ContinuousCompoundInterest(vector<ex> args) {
+Combination::Combination(vector<ex> args) {
 	this->args = move(args);
 }
 
-ContinuousCompoundInterest &ContinuousCompoundInterest::getInstance(vector<ex> args) {
-	static ContinuousCompoundInterest *instance = nullptr;
+Combination &Combination::getInstance(vector<ex> args) {
+	static Combination *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new ContinuousCompoundInterest(move(args));
+		instance = new Combination(move(args));
 	}
 
 	return *instance;
 }
 
-double ContinuousCompoundInterest::evaluate() {
+double Combination::evaluate() {
 	auto start = high_resolution_clock::now();
 
-	// args[0] = P
-	// args[1] = r
-	// args[2] = t
-
-	ex e = NumberHelper::getConstantValue(Constant::E);
-	//cout << "[DEBUG] e = " << e.evalf() << endl;
-
-	result = (args[0] * pow(e, (args[1] / 100) * args[2])).evalf();
+	result = factorial(args[0]) / (factorial(args[1]) * factorial(args[0] - args[1]));
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex ContinuousCompoundInterest::getResult() {
+ex Combination::getResult() {
 	return this->result;
 }

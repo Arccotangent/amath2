@@ -46,22 +46,36 @@ void printUsage() {
 		 << "mul <numbers/polynomials> - Multiply numbers or polynomials" << endl
 		 << "div <numbers/polynomials> - Divide numbers or polynomials" << endl
 		 << "mod <2 numbers> - Get the modulus of 2 numbers" << endl
-		 << "pow <base> <exponent> - Calculate an exponent" << endl
-		 << "sqrt <number/polynomial> - Calculate a square root (approximated)" << endl
-		 << "fct <number> - Calculate the factorial value of an integer" << endl
-		 << "fac <polynomial> - Factor a polynomial" << endl
-		 << "gcd <numbers> - Find the GCD (greatest common denominator) of 2 or more numbers" << endl
-		 << "lcm <numbers> - Find the LCM (least common multiple) of 2 or more numbers" << endl
-		 << endl
-		 << "-----Algebra-----" << endl
-		 << "qdr <a> <b> <c> - Solve a univariate quadratic (degree 2) polynomial set equal to 0 for x" << endl
-		 << "cbc <a> <b> <c> <d> - Solve a univariate cubic (degree 3) polynomial set equal to 0 for x" << endl
-		 << "log <number> - Natural logarithm" << endl
-		 << "log2 <number> - Binary logarithm" << endl
-		 << "log10 <number> - Base 10 logarithm" << endl
-		 << "logb <base> <number> - Custom base logarithm" << endl
-		 << "cpi <principal> <% rate> <compounds per year> <years> - Calculate periodically compounded interest" << endl
-		 << "ccpi <principal> <% rate> <years> - Calculate continuously compounded interest" << endl;
+			<< "pow <base> <exponent> - Calculate an exponent" << endl
+			<< "sqrt <number/polynomial> - Calculate a square root (approximated)" << endl
+			<< "fct <number> - Calculate the factorial value of an integer" << endl
+			<< "fac <polynomial> - Factor a polynomial" << endl
+			<< "gcd <numbers> - Find the GCD (greatest common denominator) of 2 or more numbers" << endl
+			<< "lcm <numbers> - Find the LCM (least common multiple) of 2 or more numbers" << endl
+			<< endl
+			<< "-----Algebra-----" << endl
+			<< "qdr <a> <b> <c> - Solve a univariate quadratic (degree 2) polynomial set equal to 0 for x" << endl
+			<< "cbc <a> <b> <c> <d> - Solve a univariate cubic (degree 3) polynomial set equal to 0 for x" << endl
+			<< "log <number> - Natural logarithm" << endl
+			<< "log2 <number> - Binary logarithm" << endl
+			<< "log10 <number> - Base 10 logarithm" << endl
+			<< "logb <base> <number> - Custom base logarithm" << endl
+			<< "cpi <principal> <% rate> <compounds per year> <years> - Calculate periodically compounded interest" << endl
+			<< "ccpi <principal> <% rate> <years> - Calculate continuously compounded interest" << endl
+			<< "st <initial term> <term to find (n)> <difference between terms> - Calculate the nth term of an arithmetic sequence" << endl
+			<< "ss <initial term> <term n> <amount of terms (n)> - Calculate the sum of terms 1 through n of an arithmetic sequence" << endl
+			<< "ncr <n> <r> - Combination (nCr)" << endl
+			<< "npr <n> <r> - Permutation (nPr)" << endl
+			<< endl
+			<< "-----Constants-----" << endl
+			<< "e - Euler's number (base of the natural logarithm) - 2.7182818284..." << endl
+			<< "pi - Pi (the ratio of a circle's circumference to its diameter) - 3.1415926535..." << endl
+			<< "y - Euler-Mascheroni constant (limiting difference between harmonic series and natural logarithm) - 0.5772156649..." << endl
+			<< endl
+			<< "-----Notes-----" << endl
+			<< "Constants can be supplied in place of traditional numeric values. For example:" << endl
+			<< "amath2 add pi 0" << endl
+			<< "would return pi." << endl;
 }
 
 int main(int argc, char* argv[]) {

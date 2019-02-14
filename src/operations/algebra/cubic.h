@@ -27,6 +27,7 @@ private:
 	GiNaC::ex x1, x2, x3;
 
 	explicit Cubic(std::vector<GiNaC::ex>);
+
 public:
 	static Cubic &getInstance(std::vector<GiNaC::ex>);
 

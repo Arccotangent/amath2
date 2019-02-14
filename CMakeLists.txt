@@ -43,7 +43,23 @@ set(ALGEBRA_SOURCES
 		src/operations/algebra/compound-interest.cpp
 		src/operations/algebra/compound-interest.h
 		src/operations/algebra/continuous-compound-interest.cpp
-		src/operations/algebra/continuous-compound-interest.h)
+		src/operations/algebra/continuous-compound-interest.h
+		src/operations/algebra/arithmetic-sequence-term-n.cpp
+		src/operations/algebra/arithmetic-sequence-term-n.h
+		src/operations/algebra/arithmetic-sequence-sum.cpp
+		src/operations/algebra/arithmetic-sequence-sum.h
+		src/operations/algebra/combination.cpp
+		src/operations/algebra/combination.h
+		src/operations/algebra/permutation.cpp
+		src/operations/algebra/permutation.h)
+
+set(UTILS_SOURCES
+		src/utils/number-helper.cpp
+		src/utils/number-helper.h)
+
+set(OPERATIONS_SOURCES
+		src/operations/operator.cpp
+		src/operations/operator.h)
 
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)
@@ -51,14 +67,16 @@ target_link_libraries(amath2_elementary cln ginac)
 add_library(amath2_algebra STATIC ${ALGEBRA_SOURCES})
 target_link_libraries(amath2_algebra cln ginac)
 
+add_library(amath2_operations STATIC ${OPERATIONS_SOURCES})
+target_link_libraries(amath2_operations amath2_elementary amath2_algebra cln ginac)
+
+add_library(amath2_utils STATIC ${UTILS_SOURCES})
+target_link_libraries(amath2_utils cln ginac)
+
 set(AMATH2_SOURCES
 		src/main.cpp
-		src/main.h
-		src/operations/operator.cpp
-		src/operations/operator.h
-		src/utils/number-helper.cpp
-		src/utils/number-helper.h)
+		src/main.h)
 
 add_executable(amath2 ${AMATH2_SOURCES})
 
-target_link_libraries(amath2 cln ginac amath2_elementary amath2_algebra)
+target_link_libraries(amath2 cln ginac amath2_elementary amath2_algebra amath2_operations amath2_utils)

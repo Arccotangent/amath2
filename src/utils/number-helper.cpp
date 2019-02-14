@@ -16,11 +16,15 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "number-helper.h"
+#include <map>
+#include <boost/assign/list_of.hpp>
 
 using std::vector;
 using std::string;
 using std::cout;
 using std::endl;
+using std::map;
+using boost::assign::map_list_of;
 using namespace GiNaC;
 
 NumberHelper::NumberHelper(int argc, vector<string> argv) {
@@ -40,13 +44,58 @@ NumberHelper& NumberHelper::getNumberHelper(int argc, vector<string> argv) {
 	return *instance;
 }
 
+Constant NumberHelper::getConstant(string arg) {
+	map<string, Constant> constants = map_list_of
+			("e", E)
+			("pi", PI)
+			("y", EULER_MASCHERONI_CONSTANT);
+
+	return constants[move(arg)];
+}
+
+ex NumberHelper::getConstantValue(Constant constant) {
+	switch (constant) {
+		case E: {
+			ex prev;
+			ex curr = 1;
+
+			ex currentDenominator = 1;
+
+			do {
+				prev = curr;
+				curr += 1 / factorial(currentDenominator);
+
+				currentDenominator++;
+			} while (curr - prev >= pow(10, -30));
+
+			return evalf(curr);
+		}
+		case PI: {
+			return evalf(GiNaC::Pi);
+		}
+		case EULER_MASCHERONI_CONSTANT: {
+			return evalf(GiNaC::Euler);
+		}
+		default: {
+			return ex(0.0);
+		}
+	}
+}
+
 vector<ex> NumberHelper::process() {
 	vector<ex> args;
 
 	for (int i = 2; i < argc; i++) {
 		try {
 			parser reader;
-			ex expression = reader(argv[i]);
+			ex expression;
+			Constant constant = getConstant(argv[i]);
+
+			if (constant == INVALID_CONSTANT)
+				expression = reader(argv[i]);
+			else
+				expression = getConstantValue(constant);
+
 			args.emplace_back(expression);
 		} catch (parse_error &error) {
 			cout << "ERROR: Exception caught in parsing: " << error.what() << endl;

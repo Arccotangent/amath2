@@ -22,6 +22,8 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 enum Operation {
+	INVALID_OPERATION,
+
 	ADDITION,
 	SUBTRACTION,
 	MULTIPLICATION,
@@ -42,8 +44,10 @@ enum Operation {
 	CUSTOM_BASE_LOGARITHM,
 	COMPOUND_INTEREST,
 	CONTINUOUS_COMPOUND_INTEREST,
-
-	INVALID_OPERATION
+	ARITHMETIC_SEQUENCE_TERM_N,
+	ARITHMETIC_SEQUENCE_SUM,
+	COMBINATION,
+	PERMUTATION
 };
 
 class Operator {

@@ -15,26 +15,26 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AMATH2_QUADRATIC_H
-#define AMATH2_QUADRATIC_H
+#ifndef AMATH2_ARITHMETIC_SEQUENCE_H
+#define AMATH2_ARITHMETIC_SEQUENCE_H
 
 #include <vector>
 #include <ginac/ginac.h>
 
-class Quadratic {
+class ArithmeticSequenceTermN {
 private:
 	std::vector<GiNaC::ex> args;
-	GiNaC::ex x1, x2;
+	GiNaC::ex result;
 
-	explicit Quadratic(std::vector<GiNaC::ex>);
+	explicit ArithmeticSequenceTermN(std::vector<GiNaC::ex>);
 
 public:
-	static Quadratic &getInstance(std::vector<GiNaC::ex>);
+	static ArithmeticSequenceTermN &getInstance(std::vector<GiNaC::ex>);
 
 	double evaluate();
-	GiNaC::ex getX1();
-	GiNaC::ex getX2();
+
+	GiNaC::ex getResult();
 };
 
 
-#endif //AMATH2_QUADRATIC_H
+#endif //AMATH2_ARITHMETIC_SEQUENCE_H

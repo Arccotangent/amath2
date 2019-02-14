@@ -16,8 +16,10 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "operator.h"
-#include <ginac/ginac.h>
 #include "../utils/number-helper.h"
+#include <ginac/ginac.h>
+#include <map>
+#include <boost/assign/list_of.hpp>
 
 #include "elementary/addition.h"
 #include "elementary/subtraction.h"
@@ -39,11 +41,17 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "algebra/custom-base-logarithm.h"
 #include "algebra/compound-interest.h"
 #include "algebra/continuous-compound-interest.h"
+#include "algebra/arithmetic-sequence-term-n.h"
+#include "algebra/arithmetic-sequence-sum.h"
+#include "algebra/combination.h"
+#include "algebra/permutation.h"
 
 using std::string;
 using std::cout;
 using std::endl;
 using std::vector;
+using std::map;
+using boost::assign::map_list_of;
 using namespace GiNaC;
 
 Operator::Operator(int argc, char *argv[]) {
@@ -67,46 +75,32 @@ Operator &Operator::getOperator(int argc, char *argv[]) {
 }
 
 Operation Operator::getOperation(const string &operation) {
-	if (operation == "add")
-		return Operation::ADDITION;
-	else if (operation == "sub")
-		return Operation::SUBTRACTION;
-	else if (operation == "mul")
-		return Operation::MULTIPLICATION;
-	else if (operation == "div")
-		return Operation::DIVISION;
-	else if (operation == "mod")
-		return Operation::MODULUS;
-	else if (operation == "pow")
-		return Operation::EXPONENTIATION;
-	else if (operation == "sqrt")
-		return Operation::SQUARE_ROOT;
-	else if (operation == "fct")
-		return Operation::FACTORIAL;
-	else if (operation == "fac")
-		return Operation::FACTOR;
-	else if (operation == "gcd")
-		return Operation::GREATEST_COMMON_DENOMINATOR;
-	else if (operation == "lcm")
-		return Operation::LEAST_COMMON_MULTIPLE;
-	else if (operation == "qdr")
-		return Operation::SOLVE_QUADRATIC;
-	else if (operation == "cbc")
-		return Operation::SOLVE_CUBIC;
-	else if (operation == "log")
-		return Operation::NATURAL_LOGARITHM;
-	else if (operation == "log10")
-		return Operation::BASE_10_LOGARITHM;
-	else if (operation == "log2")
-		return Operation::BINARY_LOGARITHM;
-	else if (operation == "logb")
-		return Operation::CUSTOM_BASE_LOGARITHM;
-	else if (operation == "cpi")
-		return Operation::COMPOUND_INTEREST;
-	else if (operation == "ccpi")
-		return Operation::CONTINUOUS_COMPOUND_INTEREST;
-	else
-		return Operation::INVALID_OPERATION;
+	map<string, Operation> operations = map_list_of
+			("add", ADDITION)
+			("sub", SUBTRACTION)
+			("mul", MULTIPLICATION)
+			("div", DIVISION)
+			("mod", MODULUS)
+			("pow", EXPONENTIATION)
+			("sqrt", SQUARE_ROOT)
+			("fct", FACTORIAL)
+			("fac", FACTOR)
+			("gcd", GREATEST_COMMON_DENOMINATOR)
+			("lcm", LEAST_COMMON_MULTIPLE)
+			("qdr", SOLVE_QUADRATIC)
+			("cbc", SOLVE_CUBIC)
+			("log", NATURAL_LOGARITHM)
+			("log10", BASE_10_LOGARITHM)
+			("log2", BINARY_LOGARITHM)
+			("logb", CUSTOM_BASE_LOGARITHM)
+			("cpi", COMPOUND_INTEREST)
+			("ccpi", CONTINUOUS_COMPOUND_INTEREST)
+			("st", ARITHMETIC_SEQUENCE_TERM_N)
+			("ss", ARITHMETIC_SEQUENCE_SUM)
+			("ncr", COMBINATION)
+			("npr", PERMUTATION);
+
+	return operations[operation];
 }
 
 void Operator::evaluate() {
@@ -118,7 +112,7 @@ void Operator::evaluate() {
 	int operationArgCount = argc - 2;
 
 	switch (operation) {
-		case Operation::ADDITION: {
+		case ADDITION: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -131,7 +125,7 @@ void Operator::evaluate() {
 			cout << addition.getResult() << endl;
 			break;
 		}
-		case Operation::SUBTRACTION: {
+		case SUBTRACTION: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -144,7 +138,7 @@ void Operator::evaluate() {
 			cout << subtraction.getResult() << endl;
 			break;
 		}
-		case Operation::MULTIPLICATION: {
+		case MULTIPLICATION: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -157,7 +151,7 @@ void Operator::evaluate() {
 			cout << multiplication.getResult() << endl;
 			break;
 		}
-		case Operation::DIVISION: {
+		case DIVISION: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -170,7 +164,7 @@ void Operator::evaluate() {
 			cout << division.getResult() << endl;
 			break;
 		}
-		case Operation::MODULUS: {
+		case MODULUS: {
 			if (operationArgCount != 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
 				break;
@@ -183,7 +177,7 @@ void Operator::evaluate() {
 			cout << modulus.getResult() << endl;
 			break;
 		}
-		case Operation::EXPONENTIATION: {
+		case EXPONENTIATION: {
 			if (operationArgCount != 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
 				break;
@@ -196,7 +190,7 @@ void Operator::evaluate() {
 			cout << exponentiation.getResult() << endl;
 			break;
 		}
-		case Operation::SQUARE_ROOT: {
+		case SQUARE_ROOT: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -209,7 +203,7 @@ void Operator::evaluate() {
 			cout << squareRoot.getResult() << endl;
 			break;
 		}
-		case Operation::FACTORIAL: {
+		case FACTORIAL: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -222,7 +216,7 @@ void Operator::evaluate() {
 			cout << factorial.getResult() << endl;
 			break;
 		}
-		case Operation::FACTOR: {
+		case FACTOR: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -235,7 +229,7 @@ void Operator::evaluate() {
 			cout << factor.getResult() << endl;
 			break;
 		}
-		case Operation::GREATEST_COMMON_DENOMINATOR: {
+		case GREATEST_COMMON_DENOMINATOR: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -248,7 +242,7 @@ void Operator::evaluate() {
 			cout << gcd.getResult() << endl;
 			break;
 		}
-		case Operation::LEAST_COMMON_MULTIPLE: {
+		case LEAST_COMMON_MULTIPLE: {
 			if (operationArgCount < 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed at least 2." << endl;
 				break;
@@ -261,7 +255,7 @@ void Operator::evaluate() {
 			cout << lcm.getResult() << endl;
 			break;
 		}
-		case Operation::SOLVE_QUADRATIC: {
+		case SOLVE_QUADRATIC: {
 			if (operationArgCount != 3) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
 				break;
@@ -275,7 +269,7 @@ void Operator::evaluate() {
 			cout << quadratic.getX2() << endl;
 			break;
 		}
-		case Operation::SOLVE_CUBIC: {
+		case SOLVE_CUBIC: {
 			if (operationArgCount != 4) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 4." << endl;
 				break;
@@ -290,7 +284,7 @@ void Operator::evaluate() {
 			cout << cubic.getX3() << endl;
 			break;
 		}
-		case Operation::NATURAL_LOGARITHM: {
+		case NATURAL_LOGARITHM: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -303,7 +297,7 @@ void Operator::evaluate() {
 			cout << logarithm.getResult() << endl;
 			break;
 		}
-		case Operation::BASE_10_LOGARITHM: {
+		case BASE_10_LOGARITHM: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -316,7 +310,7 @@ void Operator::evaluate() {
 			cout << base10Logarithm.getResult() << endl;
 			break;
 		}
-		case Operation::BINARY_LOGARITHM: {
+		case BINARY_LOGARITHM: {
 			if (operationArgCount != 1) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
 				break;
@@ -329,7 +323,7 @@ void Operator::evaluate() {
 			cout << binaryLogarithm.getResult() << endl;
 			break;
 		}
-		case Operation::CUSTOM_BASE_LOGARITHM: {
+		case CUSTOM_BASE_LOGARITHM: {
 			if (operationArgCount != 2) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
 				break;
@@ -342,7 +336,7 @@ void Operator::evaluate() {
 			cout << customBaseLogarithm.getResult() << endl;
 			break;
 		}
-		case Operation::COMPOUND_INTEREST: {
+		case COMPOUND_INTEREST: {
 			if (operationArgCount != 4) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 4." << endl;
 				break;
@@ -355,7 +349,7 @@ void Operator::evaluate() {
 			cout << compoundInterest.getResult() << endl;
 			break;
 		}
-		case Operation::CONTINUOUS_COMPOUND_INTEREST: {
+		case CONTINUOUS_COMPOUND_INTEREST: {
 			if (operationArgCount != 3) {
 				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
 				break;
@@ -368,7 +362,59 @@ void Operator::evaluate() {
 			cout << continuousCompoundInterest.getResult() << endl;
 			break;
 		}
-		case Operation::INVALID_OPERATION: {
+		case ARITHMETIC_SEQUENCE_TERM_N: {
+			if (operationArgCount != 3) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
+				break;
+			}
+
+			ArithmeticSequenceTermN arithmeticSequenceTermN = ArithmeticSequenceTermN::getInstance(args);
+			double time = arithmeticSequenceTermN.evaluate();
+
+			cout << "Arithmetic sequence term N calculated in " << time << " us" << endl;
+			cout << arithmeticSequenceTermN.getResult() << endl;
+			break;
+		}
+		case ARITHMETIC_SEQUENCE_SUM: {
+			if (operationArgCount != 3) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 3." << endl;
+				break;
+			}
+
+			ArithmeticSequenceSum arithmeticSequenceSum = ArithmeticSequenceSum::getInstance(args);
+			double time = arithmeticSequenceSum.evaluate();
+
+			cout << "Arithmetic sequence sum calculated in " << time << " us" << endl;
+			cout << arithmeticSequenceSum.getResult() << endl;
+			break;
+		}
+		case COMBINATION: {
+			if (operationArgCount != 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
+				break;
+			}
+
+			Combination combination = Combination::getInstance(args);
+			double time = combination.evaluate();
+
+			cout << "Combination calculated in " << time << " us" << endl;
+			cout << combination.getResult() << endl;
+			break;
+		}
+		case PERMUTATION: {
+			if (operationArgCount != 2) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 2." << endl;
+				break;
+			}
+
+			Permutation permutation = Permutation::getInstance(args);
+			double time = permutation.evaluate();
+
+			cout << "Permutation calculated in " << time << " us" << endl;
+			cout << permutation.getResult() << endl;
+			break;
+		}
+		case INVALID_OPERATION: {
 			cout << "ERROR: You have specified an invalid operation! Please run amath2 with no arguments to print usage documentation if needed." << endl;
 			break;
 		}

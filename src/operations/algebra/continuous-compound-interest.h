@@ -29,8 +29,6 @@ private:
 
 	explicit ContinuousCompoundInterest(std::vector<GiNaC::ex>);
 
-	static GiNaC::ex getE();
-
 public:
 	static ContinuousCompoundInterest &getInstance(std::vector<GiNaC::ex>);
 

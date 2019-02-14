@@ -23,15 +23,28 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <vector>
 
+enum Constant {
+	INVALID_CONSTANT,
+
+	E,
+	PI,
+	EULER_MASCHERONI_CONSTANT
+};
+
 class NumberHelper {
 private:
 	int argc;
 	std::vector<std::string> argv;
 
 	NumberHelper(int argc, std::vector<std::string> argv);
+
 public:
 	~NumberHelper();
 	static NumberHelper &getNumberHelper(int argc, std::vector<std::string> argv);
+
+	static Constant getConstant(std::string arg);
+
+	static GiNaC::ex getConstantValue(Constant constant);
 
 	std::vector<GiNaC::ex> process();
 };

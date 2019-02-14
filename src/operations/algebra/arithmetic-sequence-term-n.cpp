@@ -15,50 +15,39 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "continuous-compound-interest.h"
-#include "../../utils/number-helper.h"
+#include "arithmetic-sequence-term-n.h"
 #include <chrono>
 
-//using std::cout;
-//using std::endl;
 using std::vector;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-ContinuousCompoundInterest::ContinuousCompoundInterest(vector<ex> args) {
+ArithmeticSequenceTermN::ArithmeticSequenceTermN(vector<ex> args) {
 	this->args = move(args);
 }
 
-ContinuousCompoundInterest &ContinuousCompoundInterest::getInstance(vector<ex> args) {
-	static ContinuousCompoundInterest *instance = nullptr;
+ArithmeticSequenceTermN &ArithmeticSequenceTermN::getInstance(vector<ex> args) {
+	static ArithmeticSequenceTermN *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new ContinuousCompoundInterest(move(args));
+		instance = new ArithmeticSequenceTermN(move(args));
 	}
 
 	return *instance;
 }
 
-double ContinuousCompoundInterest::evaluate() {
+double ArithmeticSequenceTermN::evaluate() {
 	auto start = high_resolution_clock::now();
 
-	// args[0] = P
-	// args[1] = r
-	// args[2] = t
-
-	ex e = NumberHelper::getConstantValue(Constant::E);
-	//cout << "[DEBUG] e = " << e.evalf() << endl;
-
-	result = (args[0] * pow(e, (args[1] / 100) * args[2])).evalf();
+	result = args[0] + (args[1] - 1) * args[2];
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
-
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex ContinuousCompoundInterest::getResult() {
+ex ArithmeticSequenceTermN::getResult() {
 	return this->result;
 }
