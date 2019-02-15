@@ -33,14 +33,14 @@ enum Constant {
 
 class NumberHelper {
 private:
-	int argc;
 	std::vector<std::string> argv;
 
-	NumberHelper(int argc, std::vector<std::string> argv);
+	explicit NumberHelper(std::vector<std::string> argv);
 
 public:
 	~NumberHelper();
-	static NumberHelper &getNumberHelper(int argc, std::vector<std::string> argv);
+
+	static NumberHelper &getNumberHelper(std::vector<std::string> argv);
 
 	static Constant getConstant(std::string arg);
 

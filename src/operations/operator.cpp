@@ -30,6 +30,7 @@ along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 #include "elementary/square-root.h"
 #include "elementary/factorial.h"
 #include "elementary/factor.h"
+#include "elementary/number-factor.h"
 #include "elementary/gcd.h"
 #include "elementary/lcm.h"
 
@@ -54,21 +55,18 @@ using std::map;
 using boost::assign::map_list_of;
 using namespace GiNaC;
 
-Operator::Operator(int argc, char *argv[]) {
-	this->argc = argc;
-
-	for (int i = 0; i < argc; i++) {
-		this->argv.emplace_back(argv[i]);
-	}
+Operator::Operator(string operation, vector<string> argv) {
+	this->oper = move(operation);
+	this->argv = move(argv);
 }
 
 Operator::~Operator() = default;
 
-Operator &Operator::getOperator(int argc, char *argv[]) {
+Operator &Operator::getOperator(string operation, vector<string> argv) {
 	static Operator *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new Operator(argc, argv);
+		instance = new Operator(move(operation), move(argv));
 	}
 
 	return *instance;
@@ -85,6 +83,7 @@ Operation Operator::getOperation(const string &operation) {
 			("sqrt", SQUARE_ROOT)
 			("fct", FACTORIAL)
 			("fac", FACTOR)
+			("nfac", NUMBER_FACTOR)
 			("gcd", GREATEST_COMMON_DENOMINATOR)
 			("lcm", LEAST_COMMON_MULTIPLE)
 			("qdr", SOLVE_QUADRATIC)
@@ -104,12 +103,12 @@ Operation Operator::getOperation(const string &operation) {
 }
 
 void Operator::evaluate() {
-	Operation operation = getOperation(argv[1]);
-	NumberHelper helper = NumberHelper::getNumberHelper(argc, argv);
+	Operation operation = getOperation(this->oper);
+	NumberHelper helper = NumberHelper::getNumberHelper(argv);
 
 	vector<ex> args = helper.process();
 
-	int operationArgCount = argc - 2;
+	int operationArgCount = argv.size();
 
 	switch (operation) {
 		case ADDITION: {
@@ -227,6 +226,19 @@ void Operator::evaluate() {
 
 			cout << "Factorization complete in " << time << " us" << endl;
 			cout << factor.getResult() << endl;
+			break;
+		}
+		case NUMBER_FACTOR: {
+			if (operationArgCount != 1) {
+				cout << "ERROR: Invalid argument count! You supplied " << operationArgCount << " arguments when we needed 1." << endl;
+				break;
+			}
+
+			NumberFactor numberFactor = NumberFactor::getInstance(args);
+			double time = numberFactor.evaluate();
+
+			cout << "Factorization complete in " << time << " us" << endl;
+			cout << numberFactor.getResult() << endl;
 			break;
 		}
 		case GREATEST_COMMON_DENOMINATOR: {

@@ -22,6 +22,8 @@ set(ELEMENTARY_SOURCES
 		src/operations/elementary/factorial.h
 		src/operations/elementary/factor.cpp
 		src/operations/elementary/factor.h
+		src/operations/elementary/number-factor.cpp
+		src/operations/elementary/number-factor.h
 		src/operations/elementary/gcd.cpp
 		src/operations/elementary/gcd.h
 		src/operations/elementary/lcm.cpp
@@ -61,6 +63,8 @@ set(OPERATIONS_SOURCES
 		src/operations/operator.cpp
 		src/operations/operator.h)
 
+find_package(Boost 1.60.0 REQUIRED COMPONENTS program_options system)
+
 add_library(amath2_elementary STATIC ${ELEMENTARY_SOURCES})
 target_link_libraries(amath2_elementary cln ginac)
 
@@ -75,8 +79,10 @@ target_link_libraries(amath2_utils cln ginac)
 
 set(AMATH2_SOURCES
 		src/main.cpp
-		src/main.h)
+		src/main.h
+		src/configuration.cpp
+		src/configuration.h)
 
 add_executable(amath2 ${AMATH2_SOURCES})
 
-target_link_libraries(amath2 cln ginac amath2_elementary amath2_algebra amath2_operations amath2_utils)
+target_link_libraries(amath2 cln ginac jsoncpp boost_program_options boost_system amath2_elementary amath2_algebra amath2_operations amath2_utils)

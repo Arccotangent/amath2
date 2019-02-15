@@ -15,24 +15,26 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AMATH2_FACTOR_H
-#define AMATH2_FACTOR_H
+#ifndef AMATH2_NUMBER_FACTOR_H
+#define AMATH2_NUMBER_FACTOR_H
 
 #include <vector>
 #include <ginac/ginac.h>
 
-class Factor {
+class NumberFactor {
 private:
 	std::vector<GiNaC::ex> args;
-	GiNaC::ex result;
+	std::vector<GiNaC::ex> result;
 
-	explicit Factor(std::vector<GiNaC::ex> args);
+	explicit NumberFactor(std::vector<GiNaC::ex> args);
+
 public:
-	static Factor &getInstance(std::vector<GiNaC::ex> args);
+	static NumberFactor &getInstance(std::vector<GiNaC::ex> args);
 
 	double evaluate();
-	GiNaC::ex getResult();
+
+	std::vector<GiNaC::ex> getResult();
 };
 
 
-#endif //AMATH2_FACTOR_H
+#endif //AMATH2_NUMBER_FACTOR_H

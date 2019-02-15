@@ -15,24 +15,34 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef AMATH2_FACTOR_H
-#define AMATH2_FACTOR_H
+#ifndef AMATH2_CONFIGURATION_H
+#define AMATH2_CONFIGURATION_H
 
+#include <iostream>
 #include <vector>
-#include <ginac/ginac.h>
 
-class Factor {
+enum ConfigurationKey {
+	INVALID_KEY,
+
+	PRECISION
+};
+
+class Configuration {
 private:
-	std::vector<GiNaC::ex> args;
-	GiNaC::ex result;
+	std::string file;
+	unsigned int precision;
 
-	explicit Factor(std::vector<GiNaC::ex> args);
+	explicit Configuration(std::string file);
+
+	static std::vector<std::string> splitConfigLine(const std::string &line);
+
 public:
-	static Factor &getInstance(std::vector<GiNaC::ex> args);
+	static Configuration &getConfig(std::string file);
 
-	double evaluate();
-	GiNaC::ex getResult();
+	void parseConfig();
+
+	void applyConfig();
 };
 
 
-#endif //AMATH2_FACTOR_H
+#endif //AMATH2_CONFIGURATION_H

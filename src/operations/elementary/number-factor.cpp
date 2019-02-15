@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with amath2.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "factor.h"
+#include "number-factor.h"
 #include <chrono>
 
 using std::vector;
@@ -24,30 +24,43 @@ using std::chrono::duration_cast;
 using std::chrono::microseconds;
 using namespace GiNaC;
 
-Factor::Factor(vector<ex> args) {
+NumberFactor::NumberFactor(vector<ex> args) {
 	this->args = move(args);
 }
 
-Factor &Factor::getInstance(vector<ex> args) {
-	static Factor *instance = nullptr;
+NumberFactor &NumberFactor::getInstance(vector<ex> args) {
+	static NumberFactor *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new Factor(move(args));
+		instance = new NumberFactor(move(args));
 	}
 
 	return *instance;
 }
 
-double Factor::evaluate() {
+double NumberFactor::evaluate() {
 	auto start = high_resolution_clock::now();
 
-	this->result = factor(args[0], factor_options::all);
+	while (mod(args[0].integer_content(), 2) == 0) {
+		args[0] /= 2;
+		result.emplace_back(2);
+	}
+
+	for (ex i = 3; i < sqrt(args[0].integer_content()); i += 2) {
+		while (mod(args[0].integer_content(), i.integer_content()) == 0) {
+			args[0] /= i;
+			result.emplace_back(i);
+		}
+	}
+
+	if (args[0] != 1)
+		result.emplace_back(args[0]);
 
 	auto end = high_resolution_clock::now();
 	auto elapsed = end - start;
 	return (double) duration_cast<microseconds>(elapsed).count();
 }
 
-ex Factor::getResult() {
+vector<ex> NumberFactor::getResult() {
 	return this->result;
 }

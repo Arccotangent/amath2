@@ -27,18 +27,17 @@ using std::map;
 using boost::assign::map_list_of;
 using namespace GiNaC;
 
-NumberHelper::NumberHelper(int argc, vector<string> argv) {
-	this->argc = argc;
+NumberHelper::NumberHelper(vector<string> argv) {
 	this->argv = move(argv);
 }
 
 NumberHelper::~NumberHelper() = default;
 
-NumberHelper& NumberHelper::getNumberHelper(int argc, vector<string> argv) {
+NumberHelper &NumberHelper::getNumberHelper(vector<string> argv) {
 	static NumberHelper *instance = nullptr;
 
 	if (instance == nullptr) {
-		instance = new NumberHelper(argc, move(argv));
+		instance = new NumberHelper(move(argv));
 	}
 
 	return *instance;
@@ -66,7 +65,7 @@ ex NumberHelper::getConstantValue(Constant constant) {
 				curr += 1 / factorial(currentDenominator);
 
 				currentDenominator++;
-			} while (curr - prev >= pow(10, -30));
+			} while (curr - prev >= pow(10, -Digits));
 
 			return evalf(curr);
 		}
@@ -85,14 +84,14 @@ ex NumberHelper::getConstantValue(Constant constant) {
 vector<ex> NumberHelper::process() {
 	vector<ex> args;
 
-	for (int i = 2; i < argc; i++) {
+	for (const string &arg : argv) {
 		try {
 			parser reader;
 			ex expression;
-			Constant constant = getConstant(argv[i]);
+			Constant constant = getConstant(arg);
 
 			if (constant == INVALID_CONSTANT)
-				expression = reader(argv[i]);
+				expression = reader(arg);
 			else
 				expression = getConstantValue(constant);
 

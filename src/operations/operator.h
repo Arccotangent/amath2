@@ -33,6 +33,7 @@ enum Operation {
 	SQUARE_ROOT,
 	FACTORIAL,
 	FACTOR,
+	NUMBER_FACTOR,
 	GREATEST_COMMON_DENOMINATOR,
 	LEAST_COMMON_MULTIPLE,
 
@@ -52,16 +53,17 @@ enum Operation {
 
 class Operator {
 private:
-	int argc;
+	std::string oper;
 	std::vector<std::string> argv;
 
-	Operator(int argc, char* argv[]);
+	Operator(std::string operation, std::vector<std::string> argv);
 
-	Operation getOperation(const std::string &operation);
+	static Operation getOperation(const std::string &operation);
 
 public:
 	~Operator();
-	static Operator &getOperator(int argc, char* argv[]);
+
+	static Operator &getOperator(std::string operation, std::vector<std::string> argv);
 
 	void evaluate();
 };
