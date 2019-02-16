@@ -47,7 +47,9 @@ Constant NumberHelper::getConstant(string arg) {
 	map<string, Constant> constants = map_list_of
 			("e", E)
 			("pi", PI)
-			("y", EULER_MASCHERONI_CONSTANT);
+			("y", EULER_MASCHERONI_CONSTANT)
+			("G", CATALAN_CONSTANT)
+			("phi", GOLDEN_RATIO);
 
 	return constants[move(arg)];
 }
@@ -74,6 +76,12 @@ ex NumberHelper::getConstantValue(Constant constant) {
 		}
 		case EULER_MASCHERONI_CONSTANT: {
 			return evalf(GiNaC::Euler);
+		}
+		case CATALAN_CONSTANT: {
+			return evalf(GiNaC::Catalan);
+		}
+		case GOLDEN_RATIO: {
+			return (1 + sqrt(ex(5))) / 2;
 		}
 		default: {
 			return ex(0.0);

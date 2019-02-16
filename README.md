@@ -11,6 +11,8 @@ amath2 can handle polynomials, manipulate trigonometric functions, and more
 ### Dependencies
 
 * GiNaC
+* Boost Program Options
+* Boost System
 
 To build `amath2`, an out-of-source build directory is recommended. Create a new directory, generate CMake build files, and compile.
 

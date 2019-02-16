@@ -85,4 +85,4 @@ set(AMATH2_SOURCES
 
 add_executable(amath2 ${AMATH2_SOURCES})
 
-target_link_libraries(amath2 cln ginac jsoncpp boost_program_options boost_system amath2_elementary amath2_algebra amath2_operations amath2_utils)
+target_link_libraries(amath2 cln ginac boost_program_options boost_system amath2_elementary amath2_algebra amath2_operations amath2_utils)
